@@ -2,6 +2,7 @@
 import time
 import math
 import os
+import colorsys
 from evdev import UInput, ecodes as e
 from trackball import TrackBall
 
@@ -46,6 +47,11 @@ y = 0
 try:
     while True:
         while not trackball.get_interrupt():
+            h = int(time.time() * 50) % 360 / 360.0
+            v = abs(math.sin(int(time.time() / 3)))
+            r, g, b = [int(c * 255) for c in colorsys.hsv_to_rgb(h, 1.0, v)]
+            w = 0
+            trackball.set_rgbw(r, g, b, w)
             time.sleep(0.001)
 
         up, down, left, right, switch, state = trackball.read()
@@ -65,6 +71,12 @@ try:
         ui.write(e.EV_REL, e.REL_X, x)
         ui.write(e.EV_REL, e.REL_Y, y)
         ui.syn()
+
+        h = int(time.time() * 50) % 360 / 360.0
+        v = abs(math.sin(int(time.time() / 3)))
+        r, g, b = [int(c * 255) for c in colorsys.hsv_to_rgb(h, 1.0, v)]
+        w = 0
+        trackball.set_rgbw(r, g, b, w)
 
 except KeyboardInterrupt:
     pass
