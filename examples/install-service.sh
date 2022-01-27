@@ -10,7 +10,7 @@ After=multi-user.target
 Type=simple
 WorkingDirectory=$(pwd)
 ExecStart=$(pwd)/evdev-mouse.py
-ExecStop=$(pwd)/RGB-off.py
+ExecStop=kill -s QUIT $MAINPID && $(pwd)/RGB-off.py
 Restart=on-failure
 
 [Install]
