@@ -21,7 +21,7 @@ sudo cp 10-trackball.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules
 
 echo "Installing evdev"
-sudo apt install python-evdev
+sudo apt install python3-evdev
 
 echo "Installing Track Ball library"
 cd ../library
