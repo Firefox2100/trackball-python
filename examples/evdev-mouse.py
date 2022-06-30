@@ -54,7 +54,8 @@ try:
             trackball.set_rgbw(r, g, b, w)
             time.sleep(0.001)
 
-        up, down, left, right, switch, state = trackball.read()
+        #up, down, left, right, switch, state = trackball.read()
+        left, right, down, up, switch, state = trackball.read()
 
         x = right - left
         y = down - up
